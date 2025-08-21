@@ -32,4 +32,12 @@ public class GameService {
                 .map(GameMinDTO::new)
                 .toList();
     }
+
+    @Transactional(readOnly = true)
+    public List<GameMinDTO> findByList(UUID listId) {
+        return gameRepository.searchByList(listId)
+                .stream()
+                .map(GameMinDTO::new)
+                .toList();
+    }
 }

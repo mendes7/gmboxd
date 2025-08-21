@@ -1,6 +1,7 @@
 package com.spring.gmboxd.dtos;
 
 import com.spring.gmboxd.entities.Game;
+import com.spring.gmboxd.projections.GameMinProjection;
 
 import java.util.UUID;
 
@@ -29,6 +30,14 @@ public class GameMinDTO {
         year = entity.getYear();
         imgUrl = entity.getImgUrl();
         shortDescription = entity.getShortDescription();
+    }
+
+    public GameMinDTO(GameMinProjection projection) {
+        id = UUID.fromString(projection.getId());
+        title = projection.getTitle();
+        year = projection.getYear();
+        imgUrl = projection.getImgUrl();
+        shortDescription = projection.getShortDescription();
     }
 
     public UUID getId() {
