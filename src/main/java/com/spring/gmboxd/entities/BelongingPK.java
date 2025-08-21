@@ -17,8 +17,7 @@ public class BelongingPK {
     @JoinColumn(name = "list_id")
     private GameList gameList;
 
-    public BelongingPK() {
-    }
+    public BelongingPK() {}
 
     public BelongingPK(Game game, GameList gameList) {
         this.game = game;

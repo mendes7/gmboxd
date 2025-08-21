@@ -1,5 +1,6 @@
 package com.spring.gmboxd.entities;
 
+
 import jakarta.persistence.*;
 
 import java.util.Objects;
@@ -10,6 +11,7 @@ import java.util.UUID;
 public class Game {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private String title;
 
@@ -27,20 +29,11 @@ public class Game {
     @Column(columnDefinition = "TEXT")
     private String longDescription;
 
-    @PrePersist
-    public void prePersist() {
-        if (id == null) {
-            id = UUID.randomUUID();
-        }
-    }
+    public Game() {}
 
-    public Game() {
-    }
-
-    public Game(UUID id, String title, Integer year, String genre, String platforms, Double score, String imgUrl,
+    public Game(String title, Integer year, String genre, String platforms, Double score, String imgUrl,
                 String shortDescription, String longDescription)
     {
-        this.id = id;
         this.title = title;
         this.year = year;
         this.genre = genre;
@@ -53,10 +46,6 @@ public class Game {
 
     public UUID getId() {
         return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
     }
 
     public String getTitle() {
