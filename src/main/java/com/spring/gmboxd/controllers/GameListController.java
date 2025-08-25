@@ -2,13 +2,11 @@ package com.spring.gmboxd.controllers;
 
 import com.spring.gmboxd.dtos.GameListDTO;
 import com.spring.gmboxd.dtos.GameMinDTO;
+import com.spring.gmboxd.dtos.ReplacementDTO;
 import com.spring.gmboxd.services.GameListService;
 import com.spring.gmboxd.services.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -31,5 +29,10 @@ public class GameListController {
     @GetMapping(value = "/{listId}/games")
     public List<GameMinDTO> findByList(@PathVariable UUID listId) {
         return gameService.findByList(listId);
+    }
+
+    @PostMapping(value = "/{listId}/replacement")
+    public void move(@PathVariable UUID listId, @RequestBody ReplacementDTO body) {
+        gameListService.move(listId, body.getSourceIndex(), body.getDestinationIndex());
     }
 }
